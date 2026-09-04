@@ -28,9 +28,21 @@ import vue from '@vitejs/plugin-vue'
 import { vueTemplateInspector } from 'vite-plugin-vue-template-inspector'
 
 export default defineConfig({
-  plugins: [vueTemplateInspector(), vue()],
+  plugins: [
+    vueTemplateInspector({
+      enable: true,
+      // 命令名，或编辑器 exe 的绝对路径
+      start: 'code',
+    }),
+    vue(),
+  ],
 })
 ```
+
+| 选项 | 默认 | 说明 |
+| --- | --- | --- |
+| `enable` | `true` | 为 `false` 时完全关闭插件 |
+| `start` | 自动检测 | 传给 [launch-editor](https://github.com/yyx990803/launch-editor) 的编辑器。可用 `code`、`trae`、`webstorm` 等命令名；Windows 上若命令找不到，可改成 exe 绝对路径 |
 
 ## 本地调试
 

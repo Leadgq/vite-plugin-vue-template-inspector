@@ -77,21 +77,48 @@
     const match = loc.match(/^(.*):(\d+):(\d+)$/)
     const [, file, line, column] = match || [null, loc, '-', '-']
     panel = document.createElement('div')
-    panel.style.cssText =
-      'position:fixed;z-index:2147483647;max-width:min(520px,calc(100vw - 24px));padding:12px 14px;border-radius:8px;background:#111827;color:#f9fafb;font:13px/1.5 ui-sans-serif,system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.35)'
+    panel.style.cssText = `
+          position:fixed;
+          z-index:2147483647;
+          max-width:min(520px,calc(100vw - 24px));
+          padding:12px 14px;
+          border-radius:8px;
+          background:#111827;
+          color:#f9fafb;
+          font:13px/1.5 ui-sans-serif,system-ui,sans-serif;
+          box-shadow:0 10px 30px rgba(0,0,0,.35);
+    `
     const pathEl = document.createElement('div')
     pathEl.textContent = file
     pathEl.title = file
-    pathEl.style.cssText = 'word-break:break-all;margin-bottom:10px;color:#e5e7eb'
+    pathEl.style.cssText = `
+          word-break:break-all;
+          margin-bottom:10px;
+          color:#e5e7eb;
+    `
     const actions = document.createElement('div')
-    actions.style.cssText = 'display:flex;gap:8px;justify-content:flex-end'
+    actions.style.cssText = `
+    display:flex;
+    gap:8px;
+    justify-content:flex-end;
+    `
     const position = document.createElement('div')
-    position.style.cssText = 'display:flex;align-items:center;gap:6px;margin-right:auto'
+    position.style.cssText = `
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-right:auto;
+    `
     for (const text of ['行 ' + line, '列 ' + column]) {
       const tag = document.createElement('span')
       tag.textContent = text
-      tag.style.cssText =
-        'padding:2px 7px;border:1px solid #4b5563;border-radius:4px;background:#1f2937;color:#d1d5db;font-size:12px;white-space:nowrap'
+      tag.style.cssText = `padding:2px 7px;
+        border:1px solid #4b5563;
+        border-radius:4px;
+        background:#1f2937;
+        color:#d1d5db;
+        font-size:12px;
+        white-space:nowrap`
 
       position.append(tag)
     }
@@ -99,7 +126,13 @@
       const button = document.createElement('button')
       button.type = 'button'
       button.textContent = text
-      button.style.cssText = `cursor:pointer;border:0;border-radius:6px;padding:6px 10px;background:${color};color:#fff`
+      button.style.cssText = `cursor:pointer;
+      border:0;
+      border-radius:6px;
+      padding:6px 10px;
+      background:${color};
+      color:#fff;
+      `
       return button
     }
     const copy = makeButton('复制路径', '#2563eb')

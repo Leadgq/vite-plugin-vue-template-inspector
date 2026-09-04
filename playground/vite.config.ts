@@ -8,7 +8,7 @@ const playgroundRoot = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   root: playgroundRoot,
-  plugins: [vueTemplateInspector(), vue()],
+  plugins: [vueTemplateInspector({ enable: true }), vue()],
   server: {
     port: 5175,
   },

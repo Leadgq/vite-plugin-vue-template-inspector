@@ -70,8 +70,29 @@ function clientScript() {
     </script>`
 }
 
-export function vueTemplateInspector(): Plugin {
+export interface VueTemplateInspectorOptions {
+  /** 是否启用，默认 true。为 false 时不注入属性、不挂编辑器中间件 */
+  enable?: boolean
+  /** launch-editor 使用的编辑器：命令名（如 `code`、`trae`）或编辑器可执行文件的绝对路径 */
+  start?: string
+}
+
+function normalizeEditorStart(start: string | undefined) {
+  if (!start) return undefined
+  return path.isAbsolute(start) ? JSON.stringify(start) : start
+}
+
+export function vueTemplateInspector(options: VueTemplateInspectorOptions = {}): Plugin {
+  const { enable = true, start = '' } = options
+  const editor = normalizeEditorStart(start)
   let root = process.cwd()
+
+  if (!enable) {
+    return {
+      name: 'vue-template-inspector',
+      apply: 'serve',
+    }
+  }
 
   return {
     name: 'vue-template-inspector',
@@ -116,7 +137,7 @@ export function vueTemplateInspector(): Plugin {
         const line = Math.max(1, Number.parseInt(url.searchParams.get('line') ?? '', 10) || 1)
         const column = Math.max(1, Number.parseInt(url.searchParams.get('column') ?? '', 10) || 1)
 
-        launchEditor(`${absolutePath}:${line}:${column}`, undefined, (fileName, errorMessage) => {
+        launchEditor(`${absolutePath}:${line}:${column}`, editor, (fileName, errorMessage) => {
           console.error(`[vue-template-inspector] 无法打开 ${fileName}: ${errorMessage}`)
         })
         res.statusCode = 204
