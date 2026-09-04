@@ -1,0 +1,59 @@
+{
+  "name": "vite-plugin-vue-template-inspector",
+  "version": "0.1.0",
+  "description": "Vite plugin: Alt+click Vue template elements to copy the source path or open it in your editor.",
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "vue",
+    "inspector",
+    "devtools"
+  ],
+  "license": "MIT",
+  "author": "Leadgq",
+  "homepage": "https://github.com/Leadgq/vite-plugin-vue-template-inspector#readme",
+  "bugs": {
+    "url": "https://github.com/Leadgq/vite-plugin-vue-template-inspector/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leadgq/vite-plugin-vue-template-inspector.git"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite --config playground/vite.config.ts",
+    "build": "tsup && node scripts/copy-client.mjs",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "vite": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
+    "vue": "^3.3.0"
+  },
+  "dependencies": {
+    "@vue/compiler-dom": "^3.5.0",
+    "launch-editor": "^2.10.0",
+    "magic-string": "^0.30.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "esbuild": "^0.28.2",
+    "tsup": "^8.5.0",
+    "typescript": "~5.9.2",
+    "vite": "^8.2.0",
+    "vue": "^3.5.0"
+  }
+}
