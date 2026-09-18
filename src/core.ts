@@ -6,7 +6,7 @@ import { NodeTypes, parse as parseTemplate } from '@vue/compiler-dom'
 import type { ElementNode, TemplateChildNode } from '@vue/compiler-dom'
 import launchEditor from 'launch-editor'
 import MagicString from 'magic-string'
-import { parse as parseSFC } from 'vue/compiler-sfc'
+import { parse as parseSFC } from '@vue/compiler-sfc'
 
 export const PLUGIN_NAME = 'vue-template-inspector'
 export const ATTR = 'data-v-inspector'
@@ -117,8 +117,19 @@ export function createOpenInEditorMiddleware(options: {
   return (req: IncomingMessage, res: ServerResponse, next: () => void) => {
     if (!req.url) return next()
 
+
     const url = new URL(req.url, 'http://localhost')
     if (url.pathname !== REQ_PATH) return next()
+
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+    res.setHeader('Access-Control-Allow-Headers', '*')
+
+    if (req.method === 'OPTIONS') {
+      res.statusCode = 204
+      res.end()
+      return
+    }
 
     if (req.method !== 'POST') {
       res.statusCode = 405

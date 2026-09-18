@@ -68,8 +68,19 @@
   }
   const openEditor = async (file, line, column) => {
     const query = new URLSearchParams({ file, line, column })
-    const response = await fetch(REQ_PATH + '?' + query, { method: 'POST' })
+    const response = await fetch(inspectorEndpoint() + '?' + query, { method: 'POST' })
     if (!response.ok) throw new Error(await response.text())
+  }
+
+  function inspectorEndpoint() {
+    const injected = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__ || config.origin || ''
+    if (!injected) return REQ_PATH
+    try {
+      const base = injected.startsWith('//') ? location.protocol + injected : injected
+      return new URL(REQ_PATH, base).href
+    } catch {
+      return REQ_PATH
+    }
   }
 
   function showPanel(loc, x, y) {

@@ -12,7 +12,7 @@ export default defineConfig({
   external: [
     'vite',
     'vue',
-    'vue/compiler-sfc',
+    '@vue/compiler-sfc',
     '@vue/compiler-dom',
     'magic-string',
     'launch-editor',

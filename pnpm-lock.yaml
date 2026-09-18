@@ -11,6 +11,9 @@ importers:
       '@vue/compiler-dom':
         specifier: ^3.5.0
         version: 3.5.42
+      '@vue/compiler-sfc':
+        specifier: ^3.5.0
+        version: 3.5.42
       launch-editor:
         specifier: ^2.10.0
         version: 2.14.1
@@ -53,7 +56,7 @@ importers:
         version: 3.5.42(typescript@5.9.3)
       vue-loader:
         specifier: ^17.4.2
-        version: 17.4.2(vue@3.5.42(typescript@5.9.3))(webpack@5.111.0)
+        version: 17.4.2(@vue/compiler-sfc@3.5.42)(vue@3.5.42(typescript@5.9.3))(webpack@5.111.0)
       webpack:
         specifier: ^5.97.1
         version: 5.111.0(esbuild@0.28.2)(postcss@8.5.28)(webpack-cli@6.0.1)
@@ -4818,13 +4821,14 @@ snapshots:
       fsevents: 2.3.3
       terser: 5.51.2
 
-  vue-loader@17.4.2(vue@3.5.42(typescript@5.9.3))(webpack@5.111.0):
+  vue-loader@17.4.2(@vue/compiler-sfc@3.5.42)(vue@3.5.42(typescript@5.9.3))(webpack@5.111.0):
     dependencies:
       chalk: 4.1.2
       hash-sum: 2.0.0
       watchpack: 2.5.2
       webpack: 5.111.0(esbuild@0.28.2)(postcss@8.5.28)(webpack-cli@6.0.1)
     optionalDependencies:
+      '@vue/compiler-sfc': 3.5.42
       vue: 3.5.42(typescript@5.9.3)
 
   vue@3.5.42(typescript@5.9.3):

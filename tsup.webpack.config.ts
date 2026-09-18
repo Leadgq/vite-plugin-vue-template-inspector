@@ -11,7 +11,7 @@ const shared = {
   external: [
     'vite',
     'vue',
-    'vue/compiler-sfc',
+    '@vue/compiler-sfc',
     '@vue/compiler-dom',
     'magic-string',
     'launch-editor',
@@ -27,6 +27,9 @@ export default defineConfig([
     entry: { webpack: 'src/webpack.ts' },
     format: ['cjs'],
     dts: true,
+    esbuildOptions(options) {
+      options.keepNames = true
+    },
   },
   {
     ...shared,
