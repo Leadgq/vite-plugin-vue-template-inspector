@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-vue-template-inspector",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Vite/Webpack plugin: Alt+click Vue template elements to copy the source path or open it in your editor.",
   "keywords": [
     "vite",
